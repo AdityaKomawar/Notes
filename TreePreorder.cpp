@@ -1,3 +1,4 @@
+// Online C++ compiler to run C++ program online
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -24,7 +25,7 @@ void preorder(TreeNode *node) {
     preorder(node->right);
 }
 
-void preorderIterative(TreeNode *root) {
+void preorderIterative1(TreeNode *root) {
     stack<TreeNode*> st;
     if(root) {
         st.push(root);
@@ -46,6 +47,22 @@ void preorderIterative(TreeNode *root) {
     cout << endl;
 }
 
+void preorderIterative2(TreeNode *node) {
+    stack<TreeNode*> st;
+    while(node != NULL || !st.empty()) {
+        if(node != NULL) {
+            cout << node->data << "    ";
+            st.push(node);
+            node = node->left;
+        } else {
+            node = st.top();
+            st.pop();
+            node = node->right;
+        }
+    }
+    cout << endl;
+}
+
 int main() {
     TreeNode *root = new TreeNode(1);
     root->left = new TreeNode(2);
@@ -54,7 +71,8 @@ int main() {
     root->left->right = new TreeNode(5);
     preorder(root);
     cout << endl;
-    preorderIterative(root);
+    preorderIterative1(root);
+    preorderIterative2(root);
 
     return 0;
 }
