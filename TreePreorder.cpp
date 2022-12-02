@@ -25,6 +25,22 @@ void preorder(TreeNode *node) {
     preorder(node->right);
 }
 
+void inorder(TreeNode *node) {
+    if(node == NULL) return;
+    
+    inorder(node->left);
+    cout << node->data << "    ";
+    inorder(node->right);
+}
+
+void postorder(TreeNode *node) {
+    if(node == NULL) return;
+    
+    postorder(node->left);
+    postorder(node->right);
+    cout << node->data << "    ";
+}
+
 void preorderIterative1(TreeNode *root) {
     stack<TreeNode*> st;
     if(root) {
@@ -63,6 +79,44 @@ void preorderIterative2(TreeNode *node) {
     cout << endl;
 }
 
+void inorderIterative(TreeNode *node) {
+    stack<TreeNode *> st;
+    while(node != NULL || !st.empty()) {
+        if(node != NULL) {
+            st.push(node);
+            node = node->left;
+        } else {
+            node = st.top();
+            st.pop();
+            cout << node->data << "    ";
+            node = node->right;
+        }
+    }
+}
+
+void postorderIterative(TreeNode *node) {
+    stack<TreeNode *> st;
+    map<long int, int> mp;
+    while(node != NULL || !st.empty()) {
+        if(node != NULL) {
+            st.push(node);
+            mp.insert(pair<long int, int>((long int)node, 0));
+            node = node->left;
+        } else {
+            node = st.top();
+            st.pop();
+            if(mp[(long int)node] == 0) {
+                st.push(node);
+                mp[(long int)node] = 1;
+                node = node->right;
+            } else {
+                cout << node->data << "    ";
+                node = NULL;
+            }
+        }
+    }
+}
+
 int main() {
     TreeNode *root = new TreeNode(1);
     root->left = new TreeNode(2);
@@ -73,6 +127,14 @@ int main() {
     cout << endl;
     preorderIterative1(root);
     preorderIterative2(root);
+    cout << endl;
+    inorder(root);
+    cout << endl;
+    inorderIterative(root);
+    cout << endl;
+    postorder(root);
+    cout << endl;
+    postorderIterative(root);
 
     return 0;
 }
