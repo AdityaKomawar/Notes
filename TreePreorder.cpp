@@ -131,7 +131,7 @@ void postorderIterative(TreeNode *node) {
     }
 }
 
-void levelorderIterative(TreeNode *node) {
+void levelorderIterative1(TreeNode *node) {
     queue<TreeNode*> q;
     
     q.push(node);
@@ -150,6 +150,28 @@ void levelorderIterative(TreeNode *node) {
         }
         
         node = NULL;
+    }
+}
+
+void levelorderIterative2(TreeNode *node) {
+    cout << node->data << "    ";
+    
+    queue<TreeNode*> q;
+    q.push(node);
+    
+    while(!q.empty()) {
+        node = q.front();
+        q.pop();
+        
+        if(node->left != NULL) {
+            cout << node->left->data << "    ";
+            q.push(node->left);
+        }
+        
+        if(node->right != NULL) {
+            cout << node->right->data << "    ";
+            q.push(node->right);
+        }
     }
 }
 
@@ -174,7 +196,9 @@ int main() {
     cout << endl;
     levelorder(root, 0);
     cout << endl;
-    levelorderIterative(root);
+    levelorderIterative1(root);
+    cout << endl;
+    levelorderIterative2(root);
 
     return 0;
 }
