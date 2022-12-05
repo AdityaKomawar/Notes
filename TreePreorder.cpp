@@ -41,6 +41,20 @@ void postorder(TreeNode *node) {
     cout << node->data << "    ";
 }
 
+void levelorder(TreeNode *node, int i) {
+    if(node == NULL) return;
+    else if(i == 0) cout << node->data << "    ";
+    
+    if(node->left) {
+        cout << node->left->data << "    ";
+    }
+    if(node->right) {
+        cout << node->right->data << "    ";
+    }
+        levelorder(node->left, 1);
+        levelorder(node->right, 1);
+}
+
 void preorderIterative1(TreeNode *root) {
     stack<TreeNode*> st;
     if(root) {
@@ -117,6 +131,28 @@ void postorderIterative(TreeNode *node) {
     }
 }
 
+void levelorderIterative(TreeNode *node) {
+    queue<TreeNode*> q;
+    
+    q.push(node);
+    
+    while(node != NULL || !q.empty()) {
+        node = q.front();
+        q.pop();
+        cout << node->data << "    ";
+        
+        if(node->left != NULL) {
+            q.push(node->left);
+        }
+        
+        if(node->right != NULL) {
+            q.push(node->right);
+        }
+        
+        node = NULL;
+    }
+}
+
 int main() {
     TreeNode *root = new TreeNode(1);
     root->left = new TreeNode(2);
@@ -135,6 +171,10 @@ int main() {
     postorder(root);
     cout << endl;
     postorderIterative(root);
+    cout << endl;
+    levelorder(root, 0);
+    cout << endl;
+    levelorderIterative(root);
 
     return 0;
 }
