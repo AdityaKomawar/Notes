@@ -193,14 +193,45 @@ int treeHeight2(TreeNode *node) {
     return 0;
 }
 
+// int count(TreeNode *node) {
+//     int x, y;
+//     if(node != NULL) {
+//         x = count(node->left);
+//         y = count(node->right);
+//         return x+y+1;
+//     }
+//     return 0;
+// }
+
 int count(TreeNode *node) {
+    if(node == NULL) return 0;
+    
+    return count(node->left) + count(node->right) + 1;
+}
+
+int countLeaf(TreeNode *node) {
+    if(node == NULL) return 0;
+    if(!node->left && !node->right) return countLeaf(node->left) + countLeaf(node->right) + 1;
+    return countLeaf(node->left) + countLeaf(node->right);
+}
+
+int countNonLeaf(TreeNode *node) {
+    if(node == NULL) return 0;
+    if(node->left || node->right) return countNonLeaf(node->left) + countNonLeaf(node->right) + 1;
+     return countNonLeaf(node->left) + countNonLeaf(node->right);
+}
+
+int countOneDegNodes(TreeNode *node) {
+    if(node == NULL) return 0;
+    if((node->left && !node->right)  || (!node->left && node->right)) return countOneDegNodes(node->left) + countOneDegNodes(node->right) + 1; 
+    return countOneDegNodes(node->left) + countOneDegNodes(node->right);
+}
+
+int countTwoDegNodes(TreeNode *node) {
     int x, y;
-    if(node != NULL) {
-        x = count(node->left);
-        y = count(node->right);
-        return x+y+1;
-    }
-    return 0;
+    if(node == NULL) return 0;
+    if(node->left && node->right) return countTwoDegNodes(node->left) + countTwoDegNodes(node->right) + 1;
+    return countTwoDegNodes(node->left) + countTwoDegNodes(node->right);
 }
 
 int main() {
@@ -231,6 +262,10 @@ int main() {
     cout << "Height1: " << treeHeight1(root, 0) << endl;
     cout << "Height2: " << treeHeight2(root) << endl;
     cout << "Nodes: " << count(root) << endl;
+    cout << "Leaf Nodes: " << countLeaf(root) << endl;
+    cout << "Non Leaf Nodes: " << countNonLeaf(root) << endl;
+    cout << "Nodes (Deg 1): " << countOneDegNodes(root) << endl;
+    cout << "Nodes (Deg 2): " << countTwoDegNodes(root) << endl;
 
     return 0;
 }
