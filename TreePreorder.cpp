@@ -175,6 +175,12 @@ void levelorderIterative2(TreeNode *node) {
     }
 }
 
+int treeHeight(TreeNode *node, int h) {
+    if(node == NULL) return h;
+    
+    h = max(max(treeHeight(node->left, h+1), h), max(treeHeight(node->right, h+1), h));  
+}
+
 int main() {
     TreeNode *root = new TreeNode(1);
     root->left = new TreeNode(2);
@@ -199,6 +205,8 @@ int main() {
     levelorderIterative1(root);
     cout << endl;
     levelorderIterative2(root);
+    cout << endl;
+    cout << "Height: " << treeHeight(root, 0);
 
     return 0;
 }
