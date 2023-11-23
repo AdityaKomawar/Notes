@@ -1,6 +1,6 @@
 ## Tree - Tree is the collection of nodes where one of the node is taken as root node and rest of the nodes are divided into disjoint subsets where each subset is a subtree.
 
-<div><img style="float:right;" src="https://github.com/AdityaKomawar/Notes/blob/main/basic_tree.drawio.png" /></div>
+<div><img style="float:right;" src="https://github.com/AdityaKomawar/Notes/blob/main/basic_tree.drawio1.png" /></div>
 
 1. Root
 2. Parent
