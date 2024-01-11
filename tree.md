@@ -17,3 +17,49 @@ if n nodes then n-1 edges
 12. Forest - Collection of trees
 
 ### Binary Tree - Tree with degree 2
+#### 1. Number of Binary tree using N nodes
+This numbers is also called as Catalan Number.
+Formula (Unlabelled): T(n) = 2nCn/n+1
+Formula (Labelled): T(n) = (2nCn/n+1) * n!
+#### 2. Number of binary trees with Max Height from N nodes
+Formula: T(n) = 2*pow(n-1)
+
+#### 3. Min and Max number of nodes required to create binary tree with Height H
+Min Nodes N = H + 1
+Max Nodes N = 2*pow(h+1) - 1
+
+#### 4. Min and Max height for given number of nodes
+Min Height H = log2(n + 1) - 1
+Max Height H = n - 1
+
+#### 5. Relation between Internal and External Nodes (Leaf Nodes vs Non-Leaf Nodes)
+Leaf Nodes - Nodes with Degree 0
+Non Leaf Nodes - Nodes with Degree > 0
+degree(0) = degree(1) + 1
+
+#### 6. Strict Binary Tree (Proper/Complete)
+In strict binary tree every node has either degree(0) or degree(2). so there is no node with degree(1).
+
+Height vs Nodes of Strict Binary tree
+if height 'h' of strict binary tree is given,
+then, min nodes n = 2 * h + 1
+max nodes n = 2*pow(h+1) - 1
+
+if nodes 'n' of strict binary tree is given,
+then, min height h = log2(n+1) - 1
+max height h = (n - 1) / 2
+
+Internal vs External nodes of Strict Binary tree
+E = I + 1
+
+
+#### 7. n-ary Trees
+Here n is degree of a tree. Each node of a tree can have degree 0 to n.
+
+min nodes = n * h + 1
+max nodes = (n*pow(h+1) - 1)/(n - 1)
+
+min height = logn[N*(n - 1) + 1]
+max height = (N - 1) / n
+
+E = (n - 1)*i + 1
