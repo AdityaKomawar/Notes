@@ -63,3 +63,29 @@ min height = logn[N*(n - 1) + 1]
 max height = (N - 1) / n
 
 E = (n - 1)*i + 1
+
+
+#### 8. Representation of Tree
+Array can be represented Level by Level using an Array or using linked nodes.
+
+Full Vs Complete Binary Tree
+Full Binary Tree - Tree with Height h having maximum number of nodes i.e 2*pow(h+1)-1
+Complete Binary Tree - A complete binary tree of height h will be a full binary tree upto height h-1 and on the last level elements will be filled from left to right. i.e if a binary tree is represented using an Array then there should not be any blank places present in between the elements.
+
+Strict vs Complete Binary Tree
+Strict Binary Tree - Every node can have either 0 or 2 degree.
+So Complete binary tree can be Strict but not every Strict binary tree is complete.
+
+
+### Tree Traversals
+#### PreOrder - Visit(node), PreOrder(left subtree), PreOrder(right subtree)
+#### InOrder - InOrder(left subtree), Visit(node), InOrder(right subtree)
+#### PostOrder - PostOrder(left subtree), PostOrder(right subtree), Visit(node)
+#### LevelOrder - Level by Level
+
+#### For Tree
+PreOrder - A, B, D, E, C, F, G
+InOrder - D, B, E, A, F, C, G
+PostOrder - D, E, B, F, G, C, A
+LevelOrder - A, B, C, D, E, F, G
+
